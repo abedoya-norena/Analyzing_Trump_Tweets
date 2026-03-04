@@ -163,7 +163,7 @@ with open("tweets_01-08-2021.json", "r") as f:
 
 print("len(tweets)=", len(tweets))
 
-keywords = ["trump", "obama", "mexico", "russia", "fake news"]
+keywords = ["trump", "obama", "mexico", "russia", "fake news", ""]
 counts = {word: 0 for word in keywords}
 
 for tweet in tweets:
