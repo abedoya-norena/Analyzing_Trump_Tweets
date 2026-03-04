@@ -1,22 +1,30 @@
-# www.trumptwitterarchive.com
+# Trump Tweet Analysis
 
-This repo will automatically update once every hour.
+This lab analyzes Donald Trump's tweets using the Trump Archive dataset using the json file from "https://www.thetrumparchive.com/faq".
 
-Only the condensed_2017.json.zip and master_2017.json.zip will change. 
+## Phrase Frequency
 
-Favorite counts and retweet counts will be updated for the latest 100 tweets.
+The table below shows the percentage of tweets containing selected political phrases from the json file.
 
-Example data from the condensed JSON files:
+| phrase            | percent of tweets |
+| ----------------- | ----------------- |
+|              daca | 00.15 |
+|         fake news | 01.66 |
+|             media | 02.74 |
+|            mexico | 00.62 |
+|             obama | 05.51 |
+|            russia | 01.32 |
+|             trump | 32.45 |
+|              wall | 01.08 |
 
-  {
-    "source": "Twitter for iPhone",
-    "id_str": "838899465390018560",
-    "text": "I am a monster-man!",
-    "created_at": "Mon Mar 06 23:49:53 +0000 2017",
-    "retweet_count": 8021,
-    "in_reply_to_user_id_str": null,
-    "favorite_count": 33632,
-    "is_retweet": false
-  }
-  
-The master JSON files contain the full response from Twitter's API. Some of the files are quite large and unwieldy.
+## Visualization
+
+The bar graph below shows how frequently selected phrases appear in Trump's tweets.
+
+![Tweet Word Frequency](tweet_word_frequency.png)
+
+## Tweets by Hour (Extra Credit)
+
+This graph shows what time of day Trump tweets most often.
+
+![Tweets by Hour](tweets_by_hour.png)

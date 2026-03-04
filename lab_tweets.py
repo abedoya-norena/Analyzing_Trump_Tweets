@@ -156,16 +156,34 @@ There are two extra credit opportunities for this lab, worth one point each.
     For example, you could plot: what time of day does Trump tweet most often? or what state does Trump tweet from most often?
     If you add this to your repo you will get +1 point.
 '''
-import json
+#!/usr/bin/python3
 
+import json
+import matplotlib.pyplot as plt
+from collections import Counter
+from datetime import datetime
+
+# Load dataset,extra credit #1 :) 
 with open("tweets_01-08-2021.json", "r") as f:
     tweets = json.load(f)
 
 print("len(tweets)=", len(tweets))
 
-keywords = ["trump", "obama", "mexico", "russia", "fake news", ""]
+# Required keywords + 3 new ones
+keywords = [
+    "trump",
+    "obama",
+    "mexico",
+    "russia",
+    "fake news",
+    "wall",
+    "daca",
+    "media"
+]
+
 counts = {word: 0 for word in keywords}
 
+# Count keyword occurrences
 for tweet in tweets:
     text = tweet["text"].lower()
     for word in keywords:
@@ -173,3 +191,57 @@ for tweet in tweets:
             counts[word] += 1
 
 print("counts=", counts)
+
+# Calculate percentages
+total = len(tweets)
+percents = {}
+
+for word in keywords:
+    percents[word] = (counts[word] / total) * 100
+
+
+# Markdown table output
+print()
+print("| phrase            | percent of tweets |")
+print("| ----------------- | ----------------- |")
+
+for word in sorted(keywords):
+    percent = percents[word]
+    print(f"| {word:>17} | {percent:05.2f}             |")
+
+
+# Bar graph
+labels = keywords
+values = [percents[word] for word in keywords]
+
+plt.bar(labels, values)
+plt.xlabel("Phrase")
+plt.ylabel("Percent of Tweets")
+plt.title("Frequency of Words in Trump's Tweets")
+plt.xticks(rotation=45)
+
+plt.tight_layout()
+plt.savefig("tweet_word_frequency.png")
+plt.show()
+
+# Extra Credit
+
+hours = []
+
+for tweet in tweets:
+    time = tweet["date"]
+    dt = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
+    hours.append(dt.hour)
+
+hour_counts = Counter(hours)
+
+plt.figure()
+
+plt.bar(hour_counts.keys(), hour_counts.values())
+plt.xlabel("Hour of Day")
+plt.ylabel("Number of Tweets")
+plt.title("When Trump Tweets During the Day")
+
+plt.tight_layout()
+
+plt.savefig("tweets_by_hour.png")
