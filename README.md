@@ -1,6 +1,6 @@
 # Trump Tweet Analysis
 
-This lab analyzes Donald Trump's tweets using the Trump Archive dataset using the json file from "https://www.thetrumparchive.com/faq".
+This lab analyzes Donald Trump's tweets using the Trump Archive dataset using the json file from "https://www.thetrumparchive.com/faq" (the extra credit file).
 
 ## Phrase Frequency
 
